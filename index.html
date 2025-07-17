@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini 부동산 질문 트렌드 분석</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            color: #58508d;
+            line-height: 1;
+            margin: 0 1rem;
+        }
+        .flow-arrow:last-child::after {
+            content: '';
+        }
+        .kpi-card {
+            background-color: #f0f4ff;
+            border-left: 5px solid #58508d;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#003f5c] mb-2">AI 시대의 부동산 길잡이</h1>
+            <p class="text-lg text-gray-600">Gemini 사용자 부동산 질문 트렌드 분석</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="overview">
+                <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#003f5c] text-center mb-2">사용자 질문의 4단계 여정</h2>
+                    <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">부동산 정보를 찾는 사용자는 단순 검색을 넘어, AI를 분석가이자 전략가로 활용합니다. 질문의 흐름은 크게 4단계로 나뉘며, 각 단계는 뚜렷한 목적성을 가집니다.</p>
+                    <div class="chart-container" style="max-width: 400px; height: 350px;">
+                        <canvas id="questionDistributionChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="flow">
+                <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                     <h2 class="text-2xl md:text-3xl font-bold text-[#003f5c] text-center mb-8">지식의 확장: 질문의 진화 과정</h2>
+                     <div class="flex flex-col md:flex-row justify-center items-center text-center">
+                         <div class="p-4 flow-arrow">
+                             <h3 class="font-bold text-lg text-[#003f5c]">1. 탐색</h3>
+                             <p class="text-sm text-gray-600">개념/용어 이해</p>
+                         </div>
+                         <div class="p-4 flow-arrow">
+                             <h3 class="font-bold text-lg text-[#58508d]">2. 분석</h3>
+                             <p class="text-sm text-gray-600">대안/상황 비교</p>
+                         </div>
+                         <div class="p-4 flow-arrow">
+                             <h3 class="font-bold text-lg text-[#bc5090]">3. 전략</h3>
+                             <p class="text-sm text-gray-600">맞춤형 의사결정</p>
+                         </div>
+                         <div class="p-4">
+                             <h3 class="font-bold text-lg text-[#ff6361]">4. 검증</h3>
+                             <p class="text-sm text-gray-600">법률/세금 확인</p>
+                         </div>
+                     </div>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <section id="exploration" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                    <div class="text-center mb-6">
+                        <p class="font-bold text-[#003f5c]">Step 1 (40%)</p>
+                        <h2 class="text-2xl font-bold text-[#003f5c]">정보 탐색 및 개념 이해</h2>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        가장 많은 비중을 차지하는 단계로, 사용자는 부동산 관련 기본적인 지식과 용어, 절차를 학습하며 궁금증을 해소하고자 합니다. Gemini는 광범위한 지식 기반을 활용하여 복잡한 용어를 쉽게 설명하거나, 다양한 출처의 정보를 종합하여 초기 탐색에 필요한 정보를 제공하는 데 강점이 있습니다.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="kpi-card p-4 rounded-lg">
+                            <h4 class="font-bold">용어 정의 및 설명</h4>
+                            <p class="text-sm text-gray-700">"DSR이 뭔가요? 쉽게 설명해주세요.", "공시지가와 실거래가의 차이가 뭐예요?"</p>
+                        </div>
+                        <div class="kpi-card p-4 rounded-lg">
+                            <h4 class="font-bold">기본 정보 조회</h4>
+                            <p class="text-sm text-gray-700">"서울 아파트 매매 동향 좀 알려주세요.", "최근 전세 시장 분위기는 어떤가요?"</p>
+                        </div>
+                        <div class="kpi-card p-4 rounded-lg">
+                            <h4 class="font-bold">절차 및 방법 문의</h4>
+                            <p class="text-sm text-gray-700">"생애 첫 주택 구매 절차를 알려주세요.", "부동산 계약 시 주의할 점은 무엇인가요?"</p>
+                        </div>
+                        <div class="kpi-card p-4 rounded-lg">
+                            <h4 class="font-bold">기타 상식</h4>
+                            <p class="text-sm text-gray-700">"부동산 중개수수료는 보통 얼마나 나오나요?"</p>
+                        </div>
+                    </div>
+                    <div class="chart-container mt-6" style="height: 280px;">
+                        <canvas id="explorationChart"></canvas>
+                    </div>
+                </section>
+
+                <section id="analysis" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                    <div class="text-center mb-6">
+                        <p class="font-bold text-[#58508d]">Step 2 (30%)</p>
+                        <h2 class="text-2xl font-bold text-[#58508d]">분석 및 비교</h2>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        단순 정보 습득을 넘어, 여러 대안을 비교 분석하고 특정 상황의 의미를 파악하고자 합니다. AI는 여러 변수를 고려한 복합적인 질문에 대해 다양한 관점에서 데이터를 분석하고 비교 우위를 제시하여 사용자의 심층적인 이해를 돕습니다.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="kpi-card p-4 rounded-lg">
+                            <h4 class="font-bold">대안 비교</h4>
+                            <p class="text-sm text-gray-700">"아파트와 오피스텔 중 어떤 것이 더 투자 가치가 있을까요?", "전세와 월세 중 저에게 더 유리한 선택은 무엇일까요?"</p>
+                        </div>
+                        <div class="kpi-card p-4 rounded-lg">
+                            <h4 class="font-bold">상황 분석</h4>
+                            <p class="text-sm text-gray-700">"현재 금리 인상 시기에 부동산 매수를 하는 것이 좋을까요?", "인구 감소가 아파트 가격에 어떤 영향을 미칠까요?"</p>
+                        </div>
+                        <div class="kpi-card p-4 rounded-lg">
+                            <h4 class="font-bold">데이터 해석 요청</h4>
+                            <p class="text-sm text-gray-700">"제가 가진 전세금과 대출 여력으로 살 수 있는 서울 아파트 추천해주세요."</p>
+                        </div>
+                    </div>
+                     <div class="chart-container mt-6" style="height: 280px;">
+                        <canvas id="analysisChart"></canvas>
+                    </div>
+                </section>
+
+                <section id="strategy" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                    <div class="text-center mb-6">
+                        <p class="font-bold text-[#bc5090]">Step 3 (20%)</p>
+                        <h2 class="text-2xl font-bold text-[#bc5090]">의사결정 지원 및 전략 수립</h2>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        자신의 구체적인 상황을 제시하며, 이에 맞는 최적의 의사결정이나 개인 맞춤형 전략을 요구합니다. Gemini는 사용자의 구체적인 상황을 이해하고, 이를 바탕으로 여러 정보를 종합하여 개인화된 조언이나 전략적 방향성을 제시하는 조언자 역할을 합니다. (단, Gemini는 인공지능이므로 최종적인 법률적, 재정적 판단은 전문가와 상담하도록 권고합니다.)
+                    </p>
+                    <div class="space-y-4">
+                        <div class="kpi-card p-4 rounded-lg">
+                            <h4 class="font-bold">개인 맞춤형 추천</h4>
+                            <p class="text-sm text-gray-700">"내년 결혼 예정인데, 신혼부부가 살기 좋은 서울 외곽 지역 추천해주세요."</p>
+                        </div>
+                         <div class="kpi-card p-4 rounded-lg">
+                            <h4 class="font-bold">위험 관리 및 대비</h4>
+                            <p class="text-sm text-gray-700">"부동산 투자 시 발생할 수 있는 리스크는 무엇이고, 어떻게 대비해야 할까요?"</p>
+                        </div>
+                         <div class="kpi-card p-4 rounded-lg">
+                            <h4 class="font-bold">미래 전망 및 대비</h4>
+                            <p class="text-sm text-gray-700">"향후 5년 내 부동산 시장 전망은 어떻게 보시나요?"</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="legal" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                    <div class="text-center mb-6">
+                        <p class="font-bold text-[#ff6361]">Step 4 (10%)</p>
+                        <h2 class="text-2xl font-bold text-[#ff6361]">법률/정책/세금 관련</h2>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        부동산 거래나 소유에 수반되는 법률, 정부 정책, 세금 문제 등 전문적인 영역에 대한 질문입니다. Gemini는 복잡한 법률 및 세금 정보를 일반인이 이해하기 쉽게 풀어 설명하거나, 관련 법규의 핵심 내용을 요약하여 제공하는 데 강점이 있습니다. (단, 법률 자문은 아니므로 최종적인 해석은 전문가의 도움을 
